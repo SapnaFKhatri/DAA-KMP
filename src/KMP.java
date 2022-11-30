@@ -5,18 +5,19 @@ import java.util.Scanner;
 
 public class KMP {
     public static void main(String[] args) throws Exception {
-        Scanner in = new Scanner(System.in);
+        Scanner testInput = new Scanner(System.in);
 
         SearchPlag searchPlag = new SearchPlag();
 
         String stringTest = "";
         String stringPattern = "";
 
-        System.out.println("Enter Test file : ");
-        String testFile = in.nextLine();
-        Scanner in1 = new Scanner(System.in);
+        System.out.println("Enter a test file : ");
+        String testFile = testInput.nextLine();
+        Scanner patternInput = new Scanner(System.in);
         System.out.println("Enter a pattern file : ");
-        String patternFile = in1.nextLine();
+        String patternFile = patternInput.nextLine();
+        System.out.println("///////////////// OUTPUT /////////////////");
 
         FileReader testFileReader = new FileReader(testFile);
 
@@ -38,7 +39,7 @@ public class KMP {
         }
 
         int lengthOfTest = stringTest.length();
-        searchPlag.KMPSearch(stringPattern, stringTest);
+        searchPlag.KMPSearch(stringPattern.toLowerCase(), stringTest.toLowerCase());
         searchPlag.calculateThresholdValue(lengthOfTest);
 
     }

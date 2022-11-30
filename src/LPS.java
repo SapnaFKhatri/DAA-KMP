@@ -1,20 +1,20 @@
 public class LPS {
     public void computeLPSArray(String pattern, int patternLength, int longestPreSuf[]) {
-        int prevLPSlength = 0;
+        int prevLPSlen = 0;
         int i = 1;
         longestPreSuf[0] = 0;
 
         while (i < patternLength) {
-            if (pattern.charAt(i) == pattern.charAt(prevLPSlength)) {
-                prevLPSlength++;
-                longestPreSuf[i] = prevLPSlength;
+            if (pattern.charAt(i) == pattern.charAt(prevLPSlen)) {
+                prevLPSlen++;
+                longestPreSuf[i] = prevLPSlen;
                 i++;
             } else {
-                if (prevLPSlength == 0) {
-                    longestPreSuf[i] = prevLPSlength;
+                if (prevLPSlen == 0) {
+                    longestPreSuf[i] = prevLPSlen;
                     i++;
                 } else {
-                    prevLPSlength = longestPreSuf[prevLPSlength - 1];
+                    prevLPSlen = longestPreSuf[prevLPSlen - 1];
                 }
             }
         }

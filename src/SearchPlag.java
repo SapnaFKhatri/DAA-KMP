@@ -1,26 +1,28 @@
 public class SearchPlag {
-    int plag_count = 0;
+    int plagCount = 0;
 
     public void KMPSearch(String pattern, String test) {
-        int patternLength = pattern.length();
+        int patternLen = pattern.length();
         int testLength = test.length();
 
         LPS longestPreSuf = new LPS();
 
-        int lps[] = new int[patternLength];
+        int lps[] = new int[patternLen];
         int patternIndex = 0;
         int testIndex = 0;
 
-        longestPreSuf.computeLPSArray(pattern, patternLength, lps);
+        longestPreSuf.computeLPSArray(pattern, patternLen, lps);
 
-        while ((testLength - testIndex) >= (patternLength - patternIndex)) {
+        while ((testLength - testIndex) >= (patternLen - patternIndex)) {
             if (pattern.charAt(patternIndex) == test.charAt(testIndex)) {
                 patternIndex++;
                 testIndex++;
-                plag_count++;
+                plagCount++;
             }
-            if (patternIndex == patternLength) {
-                System.out.println("Index " + (testIndex - patternIndex));
+            if (patternIndex == patternLen) {
+                System.out.println(
+                        "Pattern match at Index "
+                                + (testIndex - patternIndex));
                 patternIndex = lps[patternIndex - 1];
 
             }
@@ -35,8 +37,14 @@ public class SearchPlag {
     }
 
     public void calculateThresholdValue(int lengthOfTest) {
-        int value = ((plag_count * 100) / lengthOfTest);
-        System.out.println("Threshold value : " + value);
+        int value = ((plagCount * 100) / lengthOfTest);
+        if (value >= 50) {
+            System.out.println("The text file is " + value + "% plagarised!!");
+        } else {
+            System.out.println("File match by " + value + "%");
+
+            System.out.println("NO plagarism found\n/////////////////////////////////////////");
+        }
     }
 
 }
